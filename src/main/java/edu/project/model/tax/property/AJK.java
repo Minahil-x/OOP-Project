@@ -5,6 +5,7 @@ import edu.project.model.user.TaxPayer;
 public class AJK extends Property{
     public   AJK(double urbanArea, double agriArea) {
         super(urbanArea, agriArea);
+        save();
     }
 
     @Override
@@ -44,7 +45,7 @@ public class AJK extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format( "%.2f to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
+        tax.add(String.format( "%.2f PKR to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
         tax.add(String.format("%.2f to Inland Revenue Department for Agricultural Property in AJK", calculateAgriTax()));
     }
     @Override
