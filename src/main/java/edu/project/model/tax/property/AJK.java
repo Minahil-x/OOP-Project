@@ -7,10 +7,9 @@ public class AJK extends Property{
         super(urbanArea, agriArea);
     }
 
-    //todo: methods
     @Override
     public double calculateUrbanTax(){
-        return 350000*urbanArea; //average rate of 200,00 pkr - 600,00 pkr per acre of urban property
+        return 35000*urbanArea; //average rate of 20,000 pkr - 60,000 pkr per acre of urban property
     }
 
     @Override
@@ -36,20 +35,36 @@ public class AJK extends Property{
 
     @Override
     public double calculateTax(TaxPayer payer){
-        tax.add(calculateUrbanTax() + " to Inland Revenue Department for Urban Property in AJK");
-        tax.add(calculateAgriTax() + " to Inland Department for Agricultural Property in AJK");
-        return calculateAgriTax() + calculateUrbanTax();
+        payer.addTaxable(this);
+        return calculateTax();
     }
     public double calculateTax(){
-        tax.add(calculateUrbanTax() + " to Inland Revenue Department for Urban Property in AJK");
-        tax.add(calculateAgriTax() + " to Inland Department for Agricultural Property in AJK");
         return calculateAgriTax() + calculateUrbanTax();
+    }
+    @Override
+    public void save(){
+        if(!tax.isEmpty()) return;
+        tax.add(String.format( "%.2f to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
+        tax.add(String.format("%.2f to Inland Revenue Department for Agricultural Property in AJK", calculateAgriTax()));
+    }
+    @Override
+    public String display(){
+        if(tax.isEmpty()) save();
+        StringBuilder taxes = new StringBuilder();
+        for(String str : tax){
+            taxes.append(str).append("\n");
+        }
+        return taxes.toString();
     }
 
     @Override
     public String toString(){
-        return "AJK Inland Revenue Department:\nUrban Property Valuation: " + urbanArea*20000000 + "\nAgricultural Property Valuation: " + agriArea*1500000 +
-                "\nTotal Valuation: " + calculateValuation() + "\nUrban Tax: " +  calculateUrbanTax() +
-                "\nAgri Tax: " +  calculateAgriTax() + "\nTotal Tax: " + calculateTax();
+        return "AJK Inland Revenue Department:" +
+                "\n  Urban Property Valuation: " + urbanArea*20000000 +
+                "\n  Agricultural Property Valuation: " + agriArea*1500000 +
+                "\nTotal Valuation: " + calculateValuation() +
+                "\n  Urban Tax: " +  calculateUrbanTax() +
+                "\n  Agri Tax: " +  calculateAgriTax() +
+                "\nTotal Tax: " + calculateTax();
     }
 }

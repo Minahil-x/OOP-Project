@@ -8,10 +8,13 @@ abstract public class Taxable {
     protected ArrayList<String> tax;
 
     public  Taxable() {
+        tax = new ArrayList<>();
     }
 
     abstract public double calculateValuation();
     abstract public double calculateTax(TaxPayer payer);
+    abstract public void save();
+    abstract public String display();
 
     public ArrayList<String> getTaxes(){return tax;}
 
