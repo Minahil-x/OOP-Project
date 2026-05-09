@@ -25,6 +25,7 @@ public class TaxPayer extends User{
 
     public void addTaxable(Taxable taxable){this.taxables.add(taxable);}
 
+    //todo: method
     public String totalTax(){
         String totalTax = "";
         for(Taxable taxable : taxables){
@@ -33,6 +34,7 @@ public class TaxPayer extends User{
         return totalTax;
     }
 
+    //todo: method
     public double totalTaxAmount(){
         double totalTaxAmount = 0;
         for(Taxable taxable : taxables){
@@ -41,6 +43,7 @@ public class TaxPayer extends User{
         return totalTaxAmount;
     }
 
+    //todo: method
     public double totalValue(){
         double totalValue = 0;
         for(Taxable taxable : taxables){

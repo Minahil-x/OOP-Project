@@ -20,4 +20,26 @@ public class UserManager {
         }
         users.add(user);
     }
+
+    public User login(String id, String password) throws ValidationError {
+        for(User u : users){
+            if(u.getId().equals(id) && u.getPassword().equals(password)){
+                u.setLoginStatus(true);
+                return u;
+            }
+        }
+        throw new ValidationError("user " + id + " doesn't exist or password is incorrect");
+    }
+
+    public void logout(User user){
+        for(User u : users){
+            if(u.getId().equals(user.getId())){
+                u.setLoginStatus(false);
+            }
+        }
+    }
+
+    //todo: method
+    public void getUserList(){
+    }
 }

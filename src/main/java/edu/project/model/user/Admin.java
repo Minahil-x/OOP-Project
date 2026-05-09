@@ -5,10 +5,12 @@ public class Admin extends User{
         super(id, password);
     }
 
+    //todo: method
     public String[][] getTable(){
         return null;
     }
 
+    //todo: method
     public String[][] generateAnalytics(){
         return null;
     }
