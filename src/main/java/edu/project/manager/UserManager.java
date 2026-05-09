@@ -15,7 +15,7 @@ public class UserManager {
     public void register(User user) throws ValidationError {
         for(User u : users){
             if(u.getId().equals(user.getId())){
-                throw new ValidationError(user.getId() + " already exists");
+                throw new ValidationError("user " + user.getId() + " already exists");
             }
         }
         users.add(user);
