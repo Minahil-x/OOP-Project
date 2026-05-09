@@ -6,8 +6,8 @@ public abstract class Property extends Taxable{
     protected double urbanArea;
     protected double agriArea;
 
-    public Property(double valuation, double urbanArea, double agriArea) {
-        super(valuation);
+    public Property(double urbanArea, double agriArea) {
+        super();
         this.urbanArea = urbanArea;
         this.agriArea = agriArea;
     }

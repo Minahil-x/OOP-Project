@@ -5,11 +5,9 @@ import edu.project.model.user.TaxPayer;
 import java.util.ArrayList;
 
 abstract public class Taxable {
-    protected double valuation;
     protected ArrayList<String> tax;
 
-    public  Taxable(double valuation) {
-        this.valuation = valuation;
+    public  Taxable() {
     }
 
     abstract public double calculateValuation();
