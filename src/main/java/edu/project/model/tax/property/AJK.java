@@ -28,4 +28,8 @@ public class AJK extends Property{
         return 0;
     }
 
+    @Override
+    public String toString(){
+        return "AJK";
+    }
 }
