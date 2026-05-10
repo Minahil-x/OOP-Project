@@ -19,10 +19,10 @@ public class Baloch extends Property {
     @Override
     public double calculateAgriTax(){
         if(agriArea > 50) {
-            return 3500*agriArea;//large land holdings
+            return 3500*(agriArea-50) + 1200*50;//large land holdings
         }
         else if(agriArea > 12.5) {
-            return 1200*agriArea;//average of 100-300pkr per acre
+            return 1200*agriArea;//average of 1000-2000pkr per acre
         }
         else {
             return 0;//exempt

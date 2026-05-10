@@ -16,10 +16,10 @@ public class AJK extends Property{
     @Override
     public double calculateAgriTax(){
         if(agriArea > 25) {
-            return 450*agriArea;//large land holdings
+            return 450*(agriArea-25) + 150*25;//large land holdings
         }
         else if(agriArea > 12.5) {
-            return 150*agriArea;//average of 100-300pkr per acre
+            return 150*(agriArea - 12.5);//average of 100-300pkr per acre
         }
         else {
             return 0;//exempt
