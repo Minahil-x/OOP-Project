@@ -58,7 +58,6 @@ public class AJK extends Property{
     }
     @Override
     public String display(){
-        if(tax.isEmpty()) save();
         StringBuilder taxes = new StringBuilder();
         for(String str : tax){
             taxes.append(str).append("\n");
@@ -73,7 +72,7 @@ public class AJK extends Property{
                 "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
                 "\nTotal Valuation: " + calculateValuation() +
                 "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agri Tax: " +  calculateAgriTax() +
+                "\n  Agricultural Tax: " +  calculateAgriTax() +
                 "\nTotal Tax: " + calculateTax();
     }
 }

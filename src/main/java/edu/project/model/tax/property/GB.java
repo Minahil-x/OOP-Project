@@ -45,12 +45,11 @@ public class GB extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR  for Urban Property in Gilgit Baltistan", calculateUrbanTax()));
-        tax.add(String.format("%.2f PKR for Agricultural Property in Gilgit Baltistan", calculateAgriTax()));
+        tax.add(String.format("%.2f PKR - Urban Property exempt (Sales Tax only) in Gilgit Baltistan", calculateUrbanTax()));
+        tax.add(String.format("%.2f PKR - Agricultural Property exempt in Gilgit Baltistan", calculateAgriTax()));
     }
     @Override
     public String display(){
-        if(tax.isEmpty()) save();
         StringBuilder taxes = new StringBuilder();
         for(String str : tax){
             taxes.append(str).append("\n");
@@ -65,7 +64,7 @@ public class GB extends Property{
                 "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
                 "\nTotal Valuation: " + calculateValuation() +
                 "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agri Tax: " +  calculateAgriTax() +
+                "\n  Agricultural Tax: " +  calculateAgriTax() +
                 "\nTotal Tax: " + calculateTax();
     }
 }
