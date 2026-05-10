@@ -20,5 +20,7 @@ public abstract class Property extends Taxable{
 
     abstract public double calculateUrbanTax();
     abstract public double calculateAgriTax();
+    abstract  public double calculateUrbanValuation();
+    abstract public double calculateAgriValuation();
 
 }

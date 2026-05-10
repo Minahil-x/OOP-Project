@@ -29,9 +29,17 @@ public class AJK extends Property{
     @Override
     public double calculateValuation(){
         double sum = 0;
-        sum += urbanArea*20000000;//rates of 0.5 crore to 10 crore
-        sum += agriArea*1500000;// avg of 4 lakh to 40 lakh per acre
+        sum += calculateUrbanValuation();
+        sum += calculateAgriValuation();
         return sum;
+    }
+    @Override
+    public double calculateUrbanValuation(){
+        return urbanArea*20000000;//rates of 0.5 crore to 10 crore
+    }
+    @Override
+    public double calculateAgriValuation(){
+        return agriArea*1500000;// avg of 4 lakh to 40 lakh per acre
     }
 
     @Override
@@ -61,8 +69,8 @@ public class AJK extends Property{
     @Override
     public String toString(){
         return "AJK Inland Revenue Department:" +
-                "\n  Urban Property Valuation: " + urbanArea*20000000 +
-                "\n  Agricultural Property Valuation: " + agriArea*1500000 +
+                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
+                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
                 "\nTotal Valuation: " + calculateValuation() +
                 "\n  Urban Tax: " +  calculateUrbanTax() +
                 "\n  Agri Tax: " +  calculateAgriTax() +

@@ -32,9 +32,17 @@ public class Baloch extends Property {
     @Override
     public double calculateValuation(){
         double sum = 0;
-        sum += urbanArea*10000000;//rates of 0.25 crore to 2 crore
-        sum += agriArea*250000;// avg of 0.4 lakh to 10 lakh per acre
+        sum += calculateUrbanValuation();
+        sum += calculateAgriValuation();
         return sum;
+    }
+    @Override
+    public double calculateUrbanValuation(){
+        return urbanArea*10000000;//rates of 0.25 crore to 2 crore
+    }
+    @Override
+    public double calculateAgriValuation(){
+        return agriArea*250000;// avg of 0.4 lakh to 10 lakh per acre
     }
 
     @Override
@@ -64,8 +72,8 @@ public class Baloch extends Property {
     @Override
     public String toString(){
         return "Balochistan BRA(Balochistan Revenue Authority):" +
-                "\n  Urban Property Valuation: " + urbanArea*10000000 +
-                "\n  Agricultural Property Valuation: " + agriArea*250000 +
+                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
+                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
                 "\nTotal Valuation: " + calculateValuation() +
                 "\n  Urban Tax: " +  calculateUrbanTax() +
                 "\n  Agri Tax: " +  calculateAgriTax() +
