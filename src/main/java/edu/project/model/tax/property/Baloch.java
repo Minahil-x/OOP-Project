@@ -32,7 +32,7 @@ public class Baloch extends Property {
     @Override
     public double calculateValuation(){
         double sum = 0;
-        sum += urbanArea*1000000;//rates of 0.25 crore to 2 crore
+        sum += urbanArea*10000000;//rates of 0.25 crore to 2 crore
         sum += agriArea*250000;// avg of 0.4 lakh to 10 lakh per acre
         return sum;
     }
@@ -48,8 +48,8 @@ public class Baloch extends Property {
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format( "%.2f PKR to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
-        tax.add(String.format("%.2f to Inland Revenue Department for Agricultural Property in AJK", calculateAgriTax()));
+        tax.add(String.format( "%.2f PKR to Excise, Taxation and Anti-Narcotics Department for Urban Property in Balochistan", calculateUrbanTax()));
+        tax.add(String.format("%.2f PKR to BOR Balochistan for Agricultural Property in Balochistan", calculateAgriTax()));
     }
     @Override
     public String display(){
@@ -63,9 +63,9 @@ public class Baloch extends Property {
 
     @Override
     public String toString(){
-        return "AJK Inland Revenue Department:" +
-                "\n  Urban Property Valuation: " + urbanArea*20000000 +
-                "\n  Agricultural Property Valuation: " + agriArea*1500000 +
+        return "Balochistan BRA(Balochistan Revenue Authority):" +
+                "\n  Urban Property Valuation: " + urbanArea*10000000 +
+                "\n  Agricultural Property Valuation: " + agriArea*250000 +
                 "\nTotal Valuation: " + calculateValuation() +
                 "\n  Urban Tax: " +  calculateUrbanTax() +
                 "\n  Agri Tax: " +  calculateAgriTax() +

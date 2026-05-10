@@ -45,8 +45,8 @@ public class AJK extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format( "%.2f PKR to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
-        tax.add(String.format("%.2f to Inland Revenue Department for Agricultural Property in AJK", calculateAgriTax()));
+        tax.add(String.format("%.2f PKR to Inland Revenue Department for Urban Property in AJK", calculateUrbanTax()));
+        tax.add(String.format("%.2f PKR to Inland Revenue Department for Agricultural Property in AJK", calculateAgriTax()));
     }
     @Override
     public String display(){
