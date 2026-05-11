@@ -8,6 +8,7 @@ import java.util.Map;
 public abstract class Income extends Taxable {
     protected Map<String, Double> regionalIncome;
     public Income(){
+        super();
         regionalIncome = new HashMap<String, Double>();
         regionalIncome.put("punjab", 0.0);
         regionalIncome.put("sindh", 0.0);
