@@ -15,8 +15,10 @@ abstract public class Taxable {
     abstract public double calculateTax(TaxPayer payer);
     abstract public void save();
     abstract public String display();
+    abstract public String toString();
 
     public ArrayList<String> getTaxes(){return tax;}
 
     public void setTaxes(ArrayList<String> tax){this.tax = tax;}
+
 }
