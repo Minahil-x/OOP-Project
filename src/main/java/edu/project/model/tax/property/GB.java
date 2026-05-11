@@ -19,13 +19,6 @@ public class GB extends Property{
     }
 
     @Override
-    public double calculateValuation(){
-        double sum = 0;
-        sum += calculateUrbanValuation();
-        sum += calculateAgriValuation();
-        return sum;
-    }
-    @Override
     public double calculateUrbanValuation(){
         return urbanArea*32000000;//DC rate of 40 lakh per kanal x 8
     }

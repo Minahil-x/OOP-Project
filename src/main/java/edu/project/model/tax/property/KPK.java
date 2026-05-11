@@ -24,13 +24,6 @@ public class KPK extends Property{
     }
 
     @Override
-    public double calculateValuation(){
-        double sum = 0;
-        sum += calculateUrbanValuation();
-        sum += calculateAgriValuation();
-        return sum;
-    }
-    @Override
     public double calculateUrbanValuation(){
         return urbanArea*120000000;//rates of 3 crore to 40 crore per acre
     }

@@ -30,13 +30,6 @@ public class Baloch extends Property {
     }
 
     @Override
-    public double calculateValuation(){
-        double sum = 0;
-        sum += calculateUrbanValuation();
-        sum += calculateAgriValuation();
-        return sum;
-    }
-    @Override
     public double calculateUrbanValuation(){
         return urbanArea*10000000;//rates of 0.25 crore to 2 crore
     }

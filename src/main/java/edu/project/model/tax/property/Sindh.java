@@ -34,13 +34,6 @@ public class Sindh extends Property{
     }
 
     @Override
-    public double calculateValuation(){
-        double sum = 0;
-        sum += calculateUrbanValuation();
-        sum += calculateAgriValuation();
-        return sum;
-    }
-    @Override
     public double calculateUrbanValuation(){
         double landValue = urbanArea * 5000000;
         double buildingValue = (urbanArea * coveredUrbanAreaPercent) * 40000000;

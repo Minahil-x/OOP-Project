@@ -27,13 +27,6 @@ public class AJK extends Property{
     }
 
     @Override
-    public double calculateValuation(){
-        double sum = 0;
-        sum += calculateUrbanValuation();
-        sum += calculateAgriValuation();
-        return sum;
-    }
-    @Override
     public double calculateUrbanValuation(){
         return urbanArea*20000000;//rates of 0.5 crore to 10 crore
     }
