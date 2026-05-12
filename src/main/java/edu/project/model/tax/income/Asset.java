@@ -8,6 +8,7 @@ public class Asset extends Income{
     private double taxD;
 
     public Asset(double bankInvestment, double equityInvestment) {
+        super();
         this.bankInvestment = bankInvestment;
         this.equityInvestment = equityInvestment;
     }
@@ -25,21 +26,25 @@ public class Asset extends Income{
 
     @Override
     public double calculateTax(TaxPayer payer) {
-        double intrest = bankInvestment * 0.12; // 11.5 - 12.5 % interest rates
+        if(payer.getRegion().equals("gb")){
+            taxD = 0;
+            return 0;//special status
+        }
+
+        double interest = bankInvestment * 0.12; // 11.5 - 12.5 % interest rates
         double dividend = equityInvestment * 0.24; // 12 % 6-month returns
 
         if(!payer.getFilerStatus()){
-            intrest *= 2;
+            interest *= 2;
         }
         if (payer.getRegion().equals("punjab")) {
-            intrest *= 0.2;
+            interest *= 0.2;
         }
         else {
-            intrest *= 0.15;
+            interest *= 0.15;
         }
         dividend *= 0.15;
-        if(payer.getRegion().equals("gb")){return 0;} //special status
-        taxD = intrest + dividend;
+        taxD = interest + dividend;
         return taxD;
     }
 
