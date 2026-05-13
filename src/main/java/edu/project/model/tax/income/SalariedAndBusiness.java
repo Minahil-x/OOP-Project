@@ -24,9 +24,13 @@ public class SalariedAndBusiness extends Income{
     }else if(annualSalary <= 1,200,000){
       return (annualSalary - 600,000) * 0.01;
     }else if(annualSalary <= 2,200,000){
-      return (annualSalary - 1,200,00) * 0.11 + 600,000 * 0.01;
+      return (annualSalary - 1,200,00) * 0.11 + 6000;
     }else if (annualSalary <= 3,200,000){
-      return (annualSalary - 2,200,00) * 0.23 + 1,000,00 * 0.11 + 600,000 * 0.01;
+      return (annualSalary - 2,200,00) * 0.23 + 116,00;
+    }else if(annualSalary <= 4,100,000){
+      return (annualSalary - 3,200,00) * 0.3 + 346,000;
+    }else{
+      return (annualSalary - 4,100,00) * 0.35 + 616,000;
     }
   }
 }
