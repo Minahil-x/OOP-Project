@@ -66,10 +66,6 @@ public class Punjab extends Property{
     }
 
     @Override
-    public double calculateTax(TaxPayer payer){
-        payer.addTaxable(this);
-        return calculateTax();
-    }
     public double calculateTax(){
         return calculateAgriTax() + calculateUrbanTax();
     }

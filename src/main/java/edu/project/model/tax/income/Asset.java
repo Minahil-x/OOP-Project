@@ -25,6 +25,9 @@ public class Asset extends Income{
     }
 
     @Override
+    public double calculateTax(){
+        return taxD;
+    }
     public double calculateTax(TaxPayer payer) {
         if(payer.getRegion().equals("gb")){
             taxD = 0;

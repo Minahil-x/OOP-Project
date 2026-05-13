@@ -12,7 +12,7 @@ abstract public class Taxable {
     }
 
     abstract public double calculateValuation();
-    abstract public double calculateTax(TaxPayer payer);
+    abstract public double calculateTax();
     abstract public void save();
     abstract public String display();
     abstract public String toString();

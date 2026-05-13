@@ -19,9 +19,6 @@ public class Agricultural extends Income{
     }
 
     @Override
-    public double calculateTax(TaxPayer payer) {
-        return calculateTax();
-    }
     public double calculateTax() {
         double tax = 0;
         for (String region: regionalIncome.keySet()) {
