@@ -2,10 +2,31 @@ package edu.project.model.tax.income;
 
 import edu.project.model.user.TaxPayer;
 
-public class Agricultural extends Income{
-
+public class Agricultural extends Taxable{
+    protected Map<String, Double> regionalIncome;
+    
     public Agricultural(){
         super();
+        regionalIncome = new HashMap<String, Double>();
+        regionalIncome.put("punjab", 0.0);
+        regionalIncome.put("sindh", 0.0);
+        regionalIncome.put("baloch", 0.0);
+        regionalIncome.put("kpk", 0.0);
+        regionalIncome.put("ict", 0.0);
+        regionalIncome.put("ajk", 0.0);
+        regionalIncome.put("gb", 0.0);
+    }
+
+    public Map<String, Double> getRegionalIncome(){
+        return regionalIncome;
+    }
+
+    public void addRegionalIncome(String region, Double regionalIncomeValue){
+        this.regionalIncome.put(region.toLowerCase(), regionalIncomeValue);
+    }
+
+    public double getIncomeByRegion(String region){
+        return regionalIncome.getOrDefault(region.toLowerCase(), 0.0);
     }
 
     @Override
