@@ -1,6 +1,6 @@
 package edu.project.model.tax.income;
 
-public class SalariedAndBusiness extends Income{
+public class SalariedAndBusiness extends Taxable{
   private double annualSalary;
   private double taxD;
 
