@@ -30,6 +30,4 @@ public abstract class Income extends Taxable {
     public double getIncomeByRegion(String region){
         return regionalIncome.getOrDefault(region.toLowerCase(), 0.0);
     }
-
-    abstract public double calculateValuation();
 }
