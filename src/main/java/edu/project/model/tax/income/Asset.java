@@ -2,7 +2,7 @@ package edu.project.model.tax.income;
 
 import edu.project.model.user.TaxPayer;
 
-public class Asset extends Income{
+public class Asset extends Taxable{
     private double bankInvestment;
     private double equityInvestment;
     private double taxD;
