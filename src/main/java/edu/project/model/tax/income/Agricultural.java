@@ -1,8 +1,12 @@
 package edu.project.model.tax.income;
 
+import edu.project.model.tax.Taxable;
 import edu.project.model.user.TaxPayer;
 
-public class Agricultural extends Taxable{
+import java.util.HashMap;
+import java.util.Map;
+
+public class Agricultural extends Taxable {
     protected Map<String, Double> regionalIncome;
     
     public Agricultural(){
