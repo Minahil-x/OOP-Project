@@ -8,6 +8,7 @@ public class Asset extends Taxable {
     private double equityInvestment;
     private double taxD;
 
+    //todo
     public Asset(double bankInvestment, double equityInvestment) {
         super();
         this.bankInvestment = bankInvestment;
