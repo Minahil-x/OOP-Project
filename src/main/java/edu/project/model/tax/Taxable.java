@@ -1,7 +1,5 @@
 package edu.project.model.tax;
 
-import edu.project.model.user.TaxPayer;
-
 import java.util.ArrayList;
 
 abstract public class Taxable {
