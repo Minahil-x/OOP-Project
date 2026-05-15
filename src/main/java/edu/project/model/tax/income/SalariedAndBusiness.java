@@ -58,13 +58,13 @@ public class SalariedAndBusiness extends Taxable {
         }else if(annualSalary <= 1200000){
             return (annualSalary - 600000) * 0.01;
         }else if(annualSalary <= 2200000){
-            return (annualSalary - 120000) * 0.11 + 6000;
+            return (annualSalary - 1200000) * 0.11 + 6000;
         }else if (annualSalary <= 3200000){
-            return (annualSalary - 220000) * 0.23 + 11600;
+            return (annualSalary - 2200000) * 0.23 + 11600;
         }else if(annualSalary <= 4100000){
-            return (annualSalary - 320000) * 0.3 + 346000;
+            return (annualSalary - 3200000) * 0.3 + 346000;
         }else{
-            return (annualSalary - 410000) * 0.35 + 616000;
+            return (annualSalary - 4100000) * 0.35 + 616000;
         }
     }
     public double getBusinessTax(){
@@ -73,13 +73,13 @@ public class SalariedAndBusiness extends Taxable {
         }else if(annualBusinessIncome<= 1200000){
             return (annualBusinessIncome - 600000) * 0.05;
         }else if(annualBusinessIncome <= 2200000){
-            return (annualBusinessIncome - 120000) * 0.15 + 30000;
+            return (annualBusinessIncome - 1200000) * 0.15 + 30000;
         }else if (annualBusinessIncome <= 3200000){
-            return (annualBusinessIncome - 220000) * 0.25 + 210000;
+            return (annualBusinessIncome - 2200000) * 0.25 + 210000;
         }else if(annualBusinessIncome <= 4100000){
-            return (annualBusinessIncome - 320000) * 0.3 + 510000;
+            return (annualBusinessIncome - 3200000) * 0.3 + 510000;
         }else{
-            return (annualBusinessIncome - 410000) * 0.35 + 1230000;
+            return (annualBusinessIncome - 4100000) * 0.35 + 1230000;
         }
     }
 }
