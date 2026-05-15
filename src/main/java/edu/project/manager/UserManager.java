@@ -3,9 +3,10 @@ package edu.project.manager;
 import edu.project.exceptions.ValidationError;
 import edu.project.model.user.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserManager {
+public class UserManager implements Serializable {
     private ArrayList<User> users;
 
     public UserManager() {

@@ -1,8 +1,9 @@
 package edu.project.model.tax;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-abstract public class Taxable {
+abstract public class Taxable implements Serializable {
     protected ArrayList<String> tax;
 
     public  Taxable() {

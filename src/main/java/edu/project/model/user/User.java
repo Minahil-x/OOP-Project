@@ -1,6 +1,8 @@
 package edu.project.model.user;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     protected String password;
     protected String id;
     protected boolean loginStatus;
