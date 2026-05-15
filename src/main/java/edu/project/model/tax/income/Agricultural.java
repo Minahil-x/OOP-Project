@@ -1,7 +1,6 @@
 package edu.project.model.tax.income;
 
 import edu.project.model.tax.Taxable;
-import edu.project.model.user.TaxPayer;
 
 import java.util.HashMap;
 import java.util.Map;

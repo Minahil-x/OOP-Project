@@ -25,29 +25,26 @@ public class TaxPayer extends User{
 
     public void addTaxable(Taxable taxable){this.taxables.add(taxable);}
 
-    //todo: method
     public String totalTax(){
-        String totalTax = "";
+        StringBuilder totalTax  = new StringBuilder();
         for(Taxable taxable : taxables){
-
+            totalTax.append(taxable.display());
         }
-        return totalTax;
+        return totalTax.toString();
     }
 
-    //todo: method
     public double totalTaxAmount(){
         double totalTaxAmount = 0;
         for(Taxable taxable : taxables){
-
+            totalTaxAmount += taxable.calculateTax();
         }
         return totalTaxAmount;
     }
 
-    //todo: method
     public double totalValue(){
         double totalValue = 0;
         for(Taxable taxable : taxables){
-
+            totalValue += taxable.calculateValuation();
         }
         return totalValue;
     }

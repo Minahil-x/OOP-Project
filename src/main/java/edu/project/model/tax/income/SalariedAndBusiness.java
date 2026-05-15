@@ -60,7 +60,7 @@ public class SalariedAndBusiness extends Taxable {
         }else if(annualSalary <= 2200000){
             return (annualSalary - 1200000) * 0.11 + 6000;
         }else if (annualSalary <= 3200000){
-            return (annualSalary - 2200000) * 0.23 + 11600;
+            return (annualSalary - 2200000) * 0.23 + 116000;
         }else if(annualSalary <= 4100000){
             return (annualSalary - 3200000) * 0.3 + 346000;
         }else{
@@ -75,7 +75,7 @@ public class SalariedAndBusiness extends Taxable {
         }else if(annualBusinessIncome <= 2200000){
             return (annualBusinessIncome - 1200000) * 0.15 + 30000;
         }else if (annualBusinessIncome <= 3200000){
-            return (annualBusinessIncome - 2200000) * 0.25 + 210000;
+            return (annualBusinessIncome - 2200000) * 0.25 + 180000;
         }else if(annualBusinessIncome <= 4100000){
             return (annualBusinessIncome - 3200000) * 0.3 + 510000;
         }else{
