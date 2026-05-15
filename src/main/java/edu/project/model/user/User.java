@@ -7,7 +7,7 @@ public class User implements Serializable {
     protected String id;
     protected boolean loginStatus;
 
-    User(String password, String id) {
+    User(String id, String password) {
         this.password = password;
         this.id = id;
         this.loginStatus = false;

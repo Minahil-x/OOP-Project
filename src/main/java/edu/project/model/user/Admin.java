@@ -1,5 +1,7 @@
 package edu.project.model.user;
 
+import edu.project.storage.FileManager;
+
 public class Admin extends User{
     public Admin(String id, String password) {
         super(id, password);
@@ -7,11 +9,11 @@ public class Admin extends User{
 
     //todo: method
     public String[][] getTable(){
-        return null;
+        return FileManager.getAnalytics();
     }
 
     //todo: method
     public String[][] generateAnalytics(){
-        return null;
+        return FileManager.getRegionalAnalytics();
     }
 }

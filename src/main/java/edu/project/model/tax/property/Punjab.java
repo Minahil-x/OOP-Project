@@ -1,13 +1,17 @@
 package edu.project.model.tax.property;
 
+import edu.project.exceptions.ValidationError;
 import edu.project.model.user.TaxPayer;
 
 public class Punjab extends Property{
     private double irrigatedPercent;
     private double coveredUrbanAreaPercent;
 
-    public   Punjab(double urbanArea, double agriArea, double irrigatedPercent, double coveredUrbanAreaPercent) {
+    public   Punjab(double urbanArea, double agriArea, double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationError {
         super(urbanArea, agriArea);
+        if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
+            throw new ValidationError("irrigatedPercent must be between 0 and 1");
+        }
         this.irrigatedPercent = irrigatedPercent;
         this.coveredUrbanAreaPercent = coveredUrbanAreaPercent;
         save();
@@ -72,8 +76,8 @@ public class Punjab extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Excise, Taxation & Narcotics Control Department for Urban Property in Punjab", calculateUrbanTax()));
-        tax.add(String.format("%.2f PKR to Board of Revenue (BOR) Punjab for Agricultural Property in Punjab", calculateAgriTax()));
+        tax.add(String.format(">%.2f PKR - ETAND for Urban Property in Punjab", calculateUrbanTax()));
+        tax.add(String.format(">%.2f PKR - BOR for Agricultural Property in Punjab", calculateAgriTax()));
     }
     @Override
     public String display(){
@@ -81,7 +85,7 @@ public class Punjab extends Property{
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

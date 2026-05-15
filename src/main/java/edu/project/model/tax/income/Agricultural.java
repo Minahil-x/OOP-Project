@@ -83,7 +83,7 @@ public class Agricultural extends Taxable {
     @Override
     public void save() {
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Federal Board of Revenue (FBR) for Agricultural Income", calculateTax()));
+        tax.add(String.format(">%.2f PKR - FBR for Agricultural Income", calculateTax()));
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Agricultural extends Taxable {
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

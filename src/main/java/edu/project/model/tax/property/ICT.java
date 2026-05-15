@@ -42,8 +42,8 @@ public class ICT extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Metropolitan Corporation Islamabad for Urban Property in Islamabad Capital Territory", calculateUrbanTax()));
-        tax.add(String.format("%.2f PKR to Metropolitan Corporation Islamabad for Farmhouse Property in Islamabad Capital Territory", calculateAgriTax()));
+        tax.add(String.format(">%.2f PKR - MCI for Urban Property in Islamabad Capital Territory", calculateUrbanTax()));
+        tax.add(String.format(">%.2f PKR - MCI for Farmhouse Property in Islamabad Capital Territory", calculateAgriTax()));
     }
     @Override
     public String display(){
@@ -51,7 +51,7 @@ public class ICT extends Property{
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

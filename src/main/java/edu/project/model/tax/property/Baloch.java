@@ -45,8 +45,8 @@ public class Baloch extends Property {
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Excise, Taxation and Anti-Narcotics Department for Urban Property in Balochistan", calculateUrbanTax()));
-        tax.add(String.format("%.2f PKR to BOR Balochistan for Agricultural Property in Balochistan", calculateAgriTax()));
+        tax.add(String.format(">%.2f PKR - ETAND for Urban Property in Balochistan", calculateUrbanTax()));
+        tax.add(String.format(">%.2f PKR - BOR for Agricultural Property in Balochistan", calculateAgriTax()));
     }
     @Override
     public String display(){
@@ -54,7 +54,7 @@ public class Baloch extends Property {
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

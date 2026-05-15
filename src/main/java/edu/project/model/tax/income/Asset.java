@@ -56,7 +56,7 @@ public class Asset extends Taxable {
     @Override
     public void save() {
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Federal Board of Revenue (FBR) for Investment Income", taxD));
+        tax.add(String.format(">%.2f PKR - FBR for Investment Income", taxD));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Asset extends Taxable {
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

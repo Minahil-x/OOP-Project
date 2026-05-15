@@ -16,7 +16,7 @@ public class UserManager implements Serializable {
     public void register(User user) throws ValidationError {
         for(User u : users){
             if(u.getId().equals(user.getId())){
-                throw new ValidationError("user " + user.getId() + " already exists");
+                throw new ValidationError("User " + user.getId() + " already exists.");
             }
         }
         users.add(user);
@@ -24,12 +24,12 @@ public class UserManager implements Serializable {
 
     public User login(String id, String password) throws ValidationError {
         for(User u : users){
-            if(u.getId().equals(id) && u.getPassword().equals(password)){
+            if(u.getId().trim().equals(id.trim()) && u.getPassword().trim().equals(password.trim())){
                 u.setLoginStatus(true);
                 return u;
             }
         }
-        throw new ValidationError("user " + id + " doesn't exist or password is incorrect");
+        throw new ValidationError("User " + id + " doesn't exist or password is incorrect.");
     }
 
     public void logout(User user){
@@ -38,9 +38,5 @@ public class UserManager implements Serializable {
                 u.setLoginStatus(false);
             }
         }
-    }
-
-    //todo: method
-    public void getUserList(){
     }
 }

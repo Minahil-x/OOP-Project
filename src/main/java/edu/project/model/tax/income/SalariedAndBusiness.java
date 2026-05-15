@@ -30,8 +30,8 @@ public class SalariedAndBusiness extends Taxable {
 
     @Override
     public void save() {
-        tax.add(String.format("%.2f PKR to Federal Board of Revenue (FBR) for Business Income", getBusinessTax()));
-        tax.add(String.format("%.2f PKR to Federal Board of Revenue (FBR) for Salaried Income", getSalaryTax()));
+        tax.add(String.format(">%.2f PKR - FBR for Business Income", getBusinessTax()));
+        tax.add(String.format(">%.2f PKR - FBR for Salaried Income", getSalaryTax()));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SalariedAndBusiness extends Taxable {
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override

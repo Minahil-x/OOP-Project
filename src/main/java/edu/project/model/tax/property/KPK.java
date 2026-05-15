@@ -39,8 +39,8 @@ public class KPK extends Property{
     @Override
     public void save(){
         if(!tax.isEmpty()) return;
-        tax.add(String.format("%.2f PKR to Excise, Taxation & Narcotics Control Department for Urban Property in KPK", calculateUrbanTax()));
-        tax.add(String.format("%.2f PKR to Revenue & Estate Department for Agricultural Property in KPK", calculateAgriTax()));
+        tax.add(String.format(">%.2f PKR - ETAND for Urban Property in KPK", calculateUrbanTax()));
+        tax.add(String.format(">%.2f PKR - RED for Agricultural Property in KPK", calculateAgriTax()));
     }
     @Override
     public String display(){
@@ -48,7 +48,7 @@ public class KPK extends Property{
         for(String str : tax){
             taxes.append(str).append("\n");
         }
-        return taxes.toString();
+        return taxes.toString() + "\n";
     }
 
     @Override
