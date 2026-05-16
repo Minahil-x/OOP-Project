@@ -1,9 +1,12 @@
 package edu.project.model.tax.property;
 
-import edu.project.model.user.TaxPayer;
+import edu.project.exceptions.ValidationError;
 
 public class GB extends Property{
-    public   GB(double urbanArea, double agriArea) {
+    public   GB(double urbanArea, double agriArea) throws ValidationError {
+        if (urbanArea < 0 || agriArea < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
         super(urbanArea, agriArea);
         save();
     }
@@ -48,12 +51,12 @@ public class GB extends Property{
 
     @Override
     public String toString(){
-        return "Gilgit Baltistan DC:" +
-                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
-                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agricultural Tax: " +  calculateAgriTax() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("Gilgit Baltistan DC:" +
+                "\n  Urban Property Valuation: %.2f" +
+                "\n  Agricultural Property Valuation: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\n  Urban Tax: %.2f" +
+                "\n  Agricultural Tax: %.2f" +
+                "\nTotal Tax: %.2f", calculateUrbanValuation(), calculateAgriValuation(), calculateValuation(), calculateUrbanTax(),  calculateAgriTax(), calculateTax());
     }
 }

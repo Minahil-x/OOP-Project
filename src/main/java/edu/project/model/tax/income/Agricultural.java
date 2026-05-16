@@ -97,8 +97,8 @@ public class Agricultural extends Taxable {
 
     @Override
     public String toString() {
-        return "FBR Pakistan:" +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("FBR Pakistan:" +
+                "\nTotal Valuation: %.2f" +
+                "\nTotal Tax: %.2f", calculateValuation(), calculateTax());
     }
 }

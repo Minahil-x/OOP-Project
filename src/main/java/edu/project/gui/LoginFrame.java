@@ -1,8 +1,6 @@
 package edu.project.gui;
 
 import edu.project.exceptions.ValidationError;
-import edu.project.gui.admin.AdminDashboard;
-import edu.project.gui.user.UserDashboard;
 import edu.project.manager.UserManager;
 import edu.project.model.user.Admin;
 import edu.project.model.user.TaxPayer;
@@ -130,7 +128,7 @@ public class LoginFrame extends JFrame {
             dispose();
 
             if (user instanceof Admin) {
-                return;
+                new AdminDashboard((Admin) user, userManager).setVisible(true);
             } else if (user instanceof TaxPayer) {
                 new UserDashboard((TaxPayer) user, userManager).setVisible(true);
             }

@@ -2,6 +2,7 @@ package edu.project.gui;
 
 import edu.project.exceptions.ValidationError;
 import edu.project.manager.UserManager;
+import edu.project.model.user.Admin;
 import edu.project.model.user.TaxPayer;
 import edu.project.storage.FileManager;
 
@@ -48,7 +49,7 @@ public class RegisterFrame extends JFrame {
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
         card.setPreferredSize(new Dimension(370, 400));
 
-        addField(card, "User ID (e.g. FA25-BCS-001)");
+        addField(card, "User ID (e.g. FA25-BCS-087)");
         idField = AppTheme.styledField(20);
         idField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 38));
         card.add(idField);
@@ -113,11 +114,27 @@ public class RegisterFrame extends JFrame {
             return;
         }
 
+        if(id.equals("admin")){
+            Admin a = new Admin(id, pass);
+            try {
+                userManager.register(a);
+                FileManager.saveUserManager(userManager);
+
+                statusLabel.setForeground(AppTheme.ACCENT);
+                statusLabel.setText("Account created! You can now log in.");
+                idField.setText("");
+                passField.setText("");
+                return;
+            } catch (ValidationError ex) {
+                statusLabel.setForeground(AppTheme.DANGER);
+                statusLabel.setText(ex.getMessage());
+            }
+        }
+
         TaxPayer tp = new TaxPayer(id, pass, filer, region);
         try {
             userManager.register(tp);
             FileManager.saveUserManager(userManager);
-            FileManager.saveTaxPayer(tp);
 
             statusLabel.setForeground(AppTheme.ACCENT);
             statusLabel.setText("Account created! You can now log in.");

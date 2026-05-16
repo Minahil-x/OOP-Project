@@ -1,9 +1,12 @@
 package edu.project.model.tax.property;
 
-import edu.project.model.user.TaxPayer;
+import edu.project.exceptions.ValidationError;
 
 public class KPK extends Property{
-    public   KPK(double urbanArea, double agriArea) {
+    public   KPK(double urbanArea, double agriArea) throws ValidationError {
+        if (urbanArea < 0 || agriArea < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
         super(urbanArea, agriArea);
         save();
     }
@@ -53,12 +56,13 @@ public class KPK extends Property{
 
     @Override
     public String toString(){
-        return "Khyber Pakhtunkhwa (KPK):" +
-                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
-                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agricultural Tax: " +  calculateAgriTax() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("Khyber Pakhtunkhwa (KPK):" +
+                "\n  Urban Property Valuation: %.2f" +
+                "\n  Agricultural Property Valuation: " +
+                "\nTotal Valuation: " +
+                "\n  Urban Tax: " +
+                "\n  Agricultural Tax: " +
+                "\nTotal Tax: ", calculateUrbanValuation(), calculateAgriValuation(), calculateValuation(),
+                calculateUrbanTax(), calculateAgriTax(), calculateTax());
     }
 }

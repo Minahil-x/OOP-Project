@@ -1,12 +1,16 @@
 package edu.project.model.tax.income;
 
+import edu.project.exceptions.ValidationError;
 import edu.project.model.tax.Taxable;
 
 public class SalariedAndBusiness extends Taxable {
     private double annualSalary;
     private double annualBusinessIncome;
 
-    public SalariedAndBusiness(double annualSalary, double annualBusinessIncome) {
+    public SalariedAndBusiness(double annualSalary, double annualBusinessIncome) throws ValidationError {
+        if (annualSalary < 0 || annualBusinessIncome < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
         super();
         this.annualBusinessIncome = annualBusinessIncome;
         this.annualSalary = annualSalary;
@@ -45,11 +49,11 @@ public class SalariedAndBusiness extends Taxable {
 
     @Override
     public String toString() {
-        return "FBR Pakistan:" +
-                "\n Business Income: " + annualBusinessIncome +
-                "\n Annual Salary: " + annualSalary +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("FBR Pakistan:" +
+                "\n Business Income: %.2f" +
+                "\n Annual Salary: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\nTotal Tax: %.2f", annualBusinessIncome, annualSalary,  calculateValuation(), calculateTax());
     }
 
     public double getSalaryTax(){

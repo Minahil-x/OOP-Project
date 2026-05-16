@@ -1,7 +1,5 @@
-package edu.project.gui.user;
+package edu.project.gui;
 
-import edu.project.gui.AppTheme;
-import edu.project.gui.LoginFrame;
 import edu.project.manager.UserManager;
 import edu.project.model.tax.Taxable;
 import edu.project.model.tax.income.*;
@@ -12,7 +10,6 @@ import edu.project.storage.FileManager;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class UserDashboard extends JFrame {
 
@@ -27,7 +24,7 @@ public class UserDashboard extends JFrame {
         this.userManager = userManager;
 
         // Load saved taxables from file
-        TaxPayer saved = FileManager.getTaxPayer(taxPayer.getId());
+        TaxPayer saved = FileManager.getTaxPayer(taxPayer.getId(), userManager);
         if (saved != null) {
             for (Taxable t : saved.getTaxables()) taxPayer.addTaxable(t);
         }

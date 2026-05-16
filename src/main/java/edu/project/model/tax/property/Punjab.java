@@ -1,17 +1,20 @@
 package edu.project.model.tax.property;
 
 import edu.project.exceptions.ValidationError;
-import edu.project.model.user.TaxPayer;
 
 public class Punjab extends Property{
     private double irrigatedPercent;
     private double coveredUrbanAreaPercent;
 
     public   Punjab(double urbanArea, double agriArea, double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationError {
-        super(urbanArea, agriArea);
-        if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
-            throw new ValidationError("irrigatedPercent must be between 0 and 1");
+        if (urbanArea < 0 || agriArea < 0) {
+            throw new ValidationError("Values can not be negative.");
         }
+        if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
+            throw new ValidationError("Percentage must be between 0 and 1.");
+        }
+        super(urbanArea, agriArea);
+
         this.irrigatedPercent = irrigatedPercent;
         this.coveredUrbanAreaPercent = coveredUrbanAreaPercent;
         save();
@@ -90,12 +93,12 @@ public class Punjab extends Property{
 
     @Override
     public String toString(){
-        return "Punjab Excise, Taxation & Narcotics Control Department (ETND):" +
-                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
-                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agricultural Tax: " +  calculateAgriTax() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("Punjab Excise, Taxation & Narcotics Control Department (ETND):" +
+                "\n  Urban Property Valuation: %.2f" +
+                "\n  Agricultural Property Valuation: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\n  Urban Tax: %.2f" +
+                "\n  Agricultural Tax: %.2f" +
+                "\nTotal Tax: %.2f", calculateUrbanValuation(), calculateAgriValuation(), calculateValuation(), calculateUrbanTax(),  calculateAgriTax(), calculateTax());
     }
 }

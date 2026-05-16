@@ -1,9 +1,12 @@
 package edu.project.model.tax.property;
 
-import edu.project.model.user.TaxPayer;
+import edu.project.exceptions.ValidationError;
 
 public class ICT extends Property{
-    public   ICT(double urbanArea, double agriArea) {
+    public   ICT(double urbanArea, double agriArea) throws ValidationError {
+        if (urbanArea < 0 || agriArea < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
         super(urbanArea, agriArea);
         save();
     }
@@ -56,12 +59,12 @@ public class ICT extends Property{
 
     @Override
     public String toString(){
-        return "Metropolitan Corporation Islamabad (MCI):" +
-                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
-                "\n  Farmhouse Valuation: " + calculateAgriValuation() +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Farmhouse Tax: " +  calculateAgriTax() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("Metropolitan Corporation Islamabad (MCI):" +
+                "\n  Urban Property Valuation: %.2f" +
+                "\n  Farmhouse Valuation: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\n  Urban Tax: %.2f" +
+                "\n  Farmhouse Tax: %.2f" +
+                "\nTotal Tax: %.2f", calculateUrbanValuation(), calculateAgriValuation(), calculateValuation(), calculateUrbanTax(), calculateAgriTax(), calculateTax());
     }
 }

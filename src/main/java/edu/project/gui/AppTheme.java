@@ -1,5 +1,6 @@
 package edu.project.gui;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class AppTheme {
@@ -98,19 +99,44 @@ public class AppTheme {
         return p;
     }
 
-    public static javax.swing.JTable styledTable(Object[][] data, Object[] cols) {
-        javax.swing.JTable t = new javax.swing.JTable(data, cols);
+    public static JTable styledTable(Object[][] data, Object[] cols) {
+        JTable t = new JTable(data, cols) {
+            // Alternating row colors
+            @Override
+            public Component prepareRenderer(javax.swing.table.TableCellRenderer r, int row, int col) {
+                Component c = super.prepareRenderer(r, row, col);
+                if (!isRowSelected(row)) {
+                    c.setBackground(row % 2 == 0 ? BG_CARD : BG_INPUT);
+                    c.setForeground(TEXT_PRIMARY);
+                } else {
+                    c.setBackground(ACCENT);
+                    c.setForeground(BG_DARK);
+                }
+                return c;
+            }
+        };
+
         t.setBackground(BG_CARD);
         t.setForeground(TEXT_PRIMARY);
         t.setFont(FONT_BODY);
-        t.setRowHeight(28);
+        t.setRowHeight(32);
         t.setGridColor(BORDER);
+        t.setShowVerticalLines(false);        // cleaner look — only horizontal lines
+        t.setIntercellSpacing(new Dimension(0, 1));
         t.setSelectionBackground(ACCENT);
         t.setSelectionForeground(BG_DARK);
+        t.setFocusable(false);                // no dotted cell focus border
+        t.setFillsViewportHeight(true);
+
+        // Header
         t.getTableHeader().setBackground(BG_INPUT);
         t.getTableHeader().setForeground(TEXT_MUTED);
         t.getTableHeader().setFont(FONT_HEAD);
-        t.setFillsViewportHeight(true);
+        t.getTableHeader().setBorder(
+                javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, ACCENT)
+        );
+        t.getTableHeader().setReorderingAllowed(false);
+
         return t;
     }
 }

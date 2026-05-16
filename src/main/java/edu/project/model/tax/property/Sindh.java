@@ -1,12 +1,18 @@
 package edu.project.model.tax.property;
 
-import edu.project.model.user.TaxPayer;
+import edu.project.exceptions.ValidationError;
 
 public class Sindh extends Property{
     private double irrigatedPercent;
     private double coveredUrbanAreaPercent;
 
-    public   Sindh(double urbanArea, double agriArea,double irrigatedPercent, double coveredUrbanAreaPercent) {
+    public   Sindh(double urbanArea, double agriArea,double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationError {
+        if (urbanArea < 0 || agriArea < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
+        if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
+            throw new ValidationError("Percentage must be between 0 and 1.");
+        }
         super(urbanArea, agriArea);
         this.irrigatedPercent = irrigatedPercent;
         this.coveredUrbanAreaPercent = coveredUrbanAreaPercent;
@@ -67,12 +73,12 @@ public class Sindh extends Property{
 
     @Override
     public String toString(){
-        return "Sindh Excise, Taxation & Narcotics Control Department (ETND):" +
-                "\n  Urban Property Valuation: " + calculateUrbanValuation() +
-                "\n  Agricultural Property Valuation: " + calculateAgriValuation() +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\n  Urban Tax: " +  calculateUrbanTax() +
-                "\n  Agricultural Tax: " +  calculateAgriTax() +
-                "\nTotal Tax: " + calculateTax();
+        return String.format("Sindh Excise, Taxation & Narcotics Control Department (ETND):" +
+                "\n  Urban Property Valuation: %.2f" +
+                "\n  Agricultural Property Valuation: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\n  Urban Tax: %.2f" +
+                "\n  Agricultural Tax: %.2f" +
+                "\nTotal Tax: %.2f", calculateUrbanValuation(), calculateAgriValuation(), calculateValuation(), calculateUrbanTax(), calculateAgriTax(), calculateTax());
     }
 }

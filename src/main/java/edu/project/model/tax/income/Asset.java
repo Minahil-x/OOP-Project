@@ -1,5 +1,6 @@
 package edu.project.model.tax.income;
 
+import edu.project.exceptions.ValidationError;
 import edu.project.model.tax.Taxable;
 import edu.project.model.user.TaxPayer;
 
@@ -9,7 +10,10 @@ public class Asset extends Taxable {
     private double taxD;
 
     //todo
-    public Asset(double bankInvestment, double equityInvestment) {
+    public Asset(double bankInvestment, double equityInvestment) throws ValidationError {
+        if (bankInvestment < 0 || equityInvestment < 0) {
+            throw new ValidationError("Values can not be negative.");
+        }
         super();
         this.bankInvestment = bankInvestment;
         this.equityInvestment = equityInvestment;
@@ -70,10 +74,10 @@ public class Asset extends Taxable {
 
     @Override
     public String toString() {
-        return "FBR Pakistan:" +
-                "\n Bank Investment: " + bankInvestment +
-                "\n Equity Investment: " + equityInvestment +
-                "\nTotal Valuation: " + calculateValuation() +
-                "\nTotal Tax: " + taxD;
+        return String.format("FBR Pakistan:" +
+                "\n Bank Investment: %.2f" +
+                "\n Equity Investment: %.2f" +
+                "\nTotal Valuation: %.2f" +
+                "\nTotal Tax: %.2f", bankInvestment, equityInvestment, calculateValuation(), taxD);
     }
 }

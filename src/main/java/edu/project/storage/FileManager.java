@@ -1,20 +1,16 @@
 package edu.project.storage;
 
 import edu.project.manager.UserManager;
-import edu.project.model.tax.Taxable;
-import edu.project.model.user.Admin;
 import edu.project.model.user.TaxPayer;
 import edu.project.model.user.User;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
 
     private static final String DATA_DIR = "data/";
     private static final String USERS_FILE = DATA_DIR + "users.ser";
-    private static final String TAXPAYERS_FILE = DATA_DIR + "taxpayers.ser";
 
     // ─── Init ────────────────────────────────────────────────────────────────
 
@@ -34,57 +30,18 @@ public class FileManager {
         return manager != null ? manager : new UserManager();
     }
 
-    // ─── TaxPayer list ────────────────────────────────────────────────────────
-
-    @SuppressWarnings("unchecked")
-    public static void saveTaxPayers(List<TaxPayer> taxPayers) {
-        serialize(TAXPAYERS_FILE, (Serializable) new ArrayList<>(taxPayers));
-    }
-
-    @SuppressWarnings("unchecked")
-    public static List<TaxPayer> loadTaxPayers() {
-        List<TaxPayer> list = deserialize(TAXPAYERS_FILE, List.class);
-        return list != null ? list : new ArrayList<>();
-    }
-
-    public static void saveTaxPayer(TaxPayer taxPayer) {
-        List<TaxPayer> list = loadTaxPayers();
-        boolean found = false;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getId().equals(taxPayer.getId())) {
-                list.set(i, taxPayer);
-                found = true;
-                break;
-            }
-        }
-        if (!found) list.add(taxPayer);
-        saveTaxPayers(list);
-    }
-
-    public static TaxPayer getTaxPayer(String id) {
-        for (TaxPayer tp : loadTaxPayers()) {
-            if (tp.getId().equals(id)) return tp;
-        }
-        return null;
-    }
-
-    public static void deleteTaxPayer(String id) {
-        List<TaxPayer> list = loadTaxPayers();
-        list.removeIf(tp -> tp.getId().equals(id));
-        saveTaxPayers(list);
-    }
-
-    // ─── Analytics ────────────────────────────────────────────────────────────
-
-    /**
-     * Returns a 2D String array for use in a JTable.
-     * Columns: ID, Region, Filer, Total Value, Total Tax
-     */
+    // getAnalytics reads from UserManager directly, not a separate file
     public static String[][] getAnalytics() {
-        List<TaxPayer> list = loadTaxPayers();
-        String[][] data = new String[list.size()][5];
-        for (int i = 0; i < list.size(); i++) {
-            TaxPayer tp = list.get(i);
+        UserManager manager = loadUserManager();
+        List<User> users = manager.getUserList();
+        List<TaxPayer> taxPayers = users.stream()
+                .filter(u -> u instanceof TaxPayer)
+                .map(u -> (TaxPayer) u)
+                .toList();
+
+        String[][] data = new String[taxPayers.size()][5];
+        for (int i = 0; i < taxPayers.size(); i++) {
+            TaxPayer tp = taxPayers.get(i);
             data[i][0] = tp.getId();
             data[i][1] = tp.getRegion();
             data[i][2] = tp.getFilerStatus() ? "Yes" : "No";
@@ -98,13 +55,19 @@ public class FileManager {
      * Returns per-region tax totals: { region, totalTax }
      */
     public static String[][] getRegionalAnalytics() {
+        UserManager manager = loadUserManager();
+
         String[] regions = {"punjab", "sindh", "kpk", "baloch", "ict", "ajk", "gb"};
         String[][] data = new String[regions.length][2];
-        List<TaxPayer> list = loadTaxPayers();
+
+        List<TaxPayer> taxPayers = manager.getUserList().stream()
+                .filter(u -> u instanceof TaxPayer)
+                .map(u -> (TaxPayer) u)
+                .toList();
 
         for (int i = 0; i < regions.length; i++) {
             double total = 0;
-            for (TaxPayer tp : list) {
+            for (TaxPayer tp : taxPayers) {
                 if (tp.getRegion().equalsIgnoreCase(regions[i])) {
                     total += tp.totalTaxAmount();
                 }
@@ -135,5 +98,37 @@ public class FileManager {
             System.err.println("FileManager: failed to load " + path + " — " + e.getMessage());
             return null;
         }
+    }
+
+    public static TaxPayer getTaxPayer(String id, UserManager userManager) {
+        List<User> users = userManager.getUserList();
+        List<TaxPayer> taxPayers = users.stream()
+                .filter(u -> u instanceof TaxPayer)
+                .map(u -> (TaxPayer) u)
+                .toList();
+
+        for (TaxPayer tp : taxPayers) {
+            if (tp.getId().trim().equals(id)) {
+                return tp;
+            }
+        }
+        return null;
+    }
+
+    public static String getTotalTaxPayers() {
+        return String.valueOf(loadUserManager().getUserList().stream()
+                .filter(u -> u instanceof TaxPayer).count());
+    }
+    public static String getTotalTaxCollected() {
+        return String.format("%.2f", loadUserManager().getUserList().stream()
+                .filter(u -> u instanceof TaxPayer)
+                .mapToDouble(u -> ((TaxPayer) u).totalTaxAmount())
+                .sum());
+    }
+    public static String getTotalValuation() {
+        return String.format("%.2f", loadUserManager().getUserList().stream()
+                .filter(u -> u instanceof TaxPayer)
+                .mapToDouble(u -> ((TaxPayer) u).totalValue())
+                .sum());
     }
 }
