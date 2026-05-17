@@ -98,7 +98,7 @@ public class AdminDashboard extends JFrame {
         return panel;
     }
 
-    // ── Tab 1: TaxPayer Records ───────────────────────────────────────────────
+    //Tab 1: TaxPayer Records
 
     private JPanel buildTaxpayerTab() {
         JPanel p = new JPanel(new BorderLayout(0, 12));
@@ -129,7 +129,7 @@ public class AdminDashboard extends JFrame {
         return p;
     }
 
-    // ── Tab 2: Regional Analytics ─────────────────────────────────────────────
+    //Tab 2: Regional Analytics
 
     private JPanel buildAnalyticsTab() {
         JPanel p = new JPanel(new BorderLayout(0, 12));
@@ -151,7 +151,7 @@ public class AdminDashboard extends JFrame {
         return p;
     }
 
-    // ── Refresh ───────────────────────────────────────────────────────────────
+    //Refresh
 
     private void refresh() {
         String[][] tpData = FileManager.getAnalytics();
@@ -176,7 +176,7 @@ public class AdminDashboard extends JFrame {
         table.getTableHeader().setFont(AppTheme.FONT_HEAD);
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    //Helpers
 
     private JPanel summaryCard(String label, JLabel valueLabel, Color valueColor) {
         JPanel card = AppTheme.card();

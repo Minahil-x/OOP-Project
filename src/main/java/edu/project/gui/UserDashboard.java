@@ -44,14 +44,14 @@ public class UserDashboard extends JFrame {
         JPanel root = new JPanel(new BorderLayout(0, 0));
         root.setBackground(AppTheme.BG_DARK);
 
-        // ── Top bar ──
+        // Top bar
         root.add(buildTopBar(), BorderLayout.NORTH);
 
-        // ── Left sidebar: summary ──
+        //Left sidebar: summary
         JPanel sidebar = buildSidebar();
         root.add(sidebar, BorderLayout.WEST);
 
-        // ── Center: add taxable panel ──
+        //Center: add taxable panel
         JPanel center = buildAddPanel();
         root.add(center, BorderLayout.CENTER);
 
@@ -172,7 +172,7 @@ public class UserDashboard extends JFrame {
         return panel;
     }
 
-    // ── Property Tab ──────────────────────────────────────────────────────────
+    //Property Tab
     private JPanel buildPropertyTab() {
         JPanel p = tabPanel();
 
@@ -222,7 +222,7 @@ public class UserDashboard extends JFrame {
         return p;
     }
 
-    // ── Salary Tab ────────────────────────────────────────────────────────────
+    //Salary Tab
     private JPanel buildSalaryTab() {
         JPanel p = tabPanel();
         JTextField salaryF   = field(p, "Annual Salary (PKR)");
@@ -249,7 +249,7 @@ public class UserDashboard extends JFrame {
         return p;
     }
 
-    // ── Agricultural Tab ──────────────────────────────────────────────────────
+    //Agricultural Tab
     private JPanel buildAgriTab() {
         JPanel p = tabPanel();
         p.add(AppTheme.label("Enter income per region (leave 0 if none):", AppTheme.FONT_SMALL, AppTheme.TEXT_MUTED));
@@ -284,7 +284,7 @@ public class UserDashboard extends JFrame {
         return p;
     }
 
-    // ── Asset Tab ─────────────────────────────────────────────────────────────
+    //Asset Tab
     private JPanel buildAssetTab() {
         JPanel p = tabPanel();
         JTextField bankF   = field(p, "Bank Investment / Deposits (PKR)");
@@ -312,7 +312,7 @@ public class UserDashboard extends JFrame {
         return p;
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    //Helpers
 
     private void refreshSummary() {
         totalTaxLabel.setText(String.format("PKR %,.2f", taxPayer.totalTaxAmount()));

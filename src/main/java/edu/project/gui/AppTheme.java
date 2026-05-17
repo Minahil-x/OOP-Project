@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class AppTheme {
 
-    // ── Palette ──────────────────────────────────────────────────────────────
+    //Palette
     public static final Color BG_DARK      = new Color(13, 17, 23);
     public static final Color BG_CARD      = new Color(22, 27, 34);
     public static final Color BG_INPUT     = new Color(33, 38, 45);
@@ -15,14 +15,14 @@ public class AppTheme {
     public static final Color TEXT_MUTED   = new Color(110, 118, 129);
     public static final Color BORDER       = new Color(48, 54, 61);
 
-    // ── Typography ───────────────────────────────────────────────────────────
+    //Typography
     public static final Font FONT_TITLE  = new Font("Segoe UI", Font.BOLD,  22);
     public static final Font FONT_HEAD   = new Font("Segoe UI", Font.BOLD,  14);
     public static final Font FONT_BODY   = new Font("Segoe UI", Font.PLAIN, 13);
     public static final Font FONT_SMALL  = new Font("Segoe UI", Font.PLAIN, 11);
     public static final Font FONT_MONO   = new Font("Consolas",  Font.PLAIN, 12);
 
-    // ── Shared component builders ─────────────────────────────────────────────
+    //Shared component builders
 
     public static javax.swing.JButton primaryButton(String text) {
         javax.swing.JButton btn = new javax.swing.JButton(text);
