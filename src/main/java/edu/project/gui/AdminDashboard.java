@@ -56,8 +56,8 @@ public class AdminDashboard extends JFrame {
 
         JPanel info = new JPanel(new FlowLayout(FlowLayout.LEFT, 12, 0));
         info.setBackground(AppTheme.BG_CARD);
-        info.add(AppTheme.label("◈ PakTax", AppTheme.FONT_TITLE, AppTheme.ACCENT));
-        info.add(AppTheme.label("│", AppTheme.FONT_BODY, AppTheme.BORDER));
+        info.add(AppTheme.label("PakTax", AppTheme.FONT_TITLE, AppTheme.ACCENT));
+        info.add(AppTheme.label("|", AppTheme.FONT_BODY, AppTheme.BORDER));
         info.add(AppTheme.label(admin.getId(), AppTheme.FONT_HEAD, AppTheme.TEXT_PRIMARY));
         info.add(AppTheme.label("•", AppTheme.FONT_BODY, AppTheme.TEXT_MUTED));
         info.add(AppTheme.label("Admin", AppTheme.FONT_BODY, AppTheme.ACCENT));
@@ -65,7 +65,7 @@ public class AdminDashboard extends JFrame {
 
         JPanel btnArea = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
         btnArea.setBackground(AppTheme.BG_CARD);
-        JButton refreshBtn = AppTheme.primaryButton("⟳  Refresh");
+        JButton refreshBtn = AppTheme.primaryButton("Refresh");
         refreshBtn.addActionListener(e -> refresh());
         JButton logoutBtn = AppTheme.dangerButton("Logout");
         logoutBtn.addActionListener(e -> doLogout());
@@ -155,12 +155,10 @@ public class AdminDashboard extends JFrame {
 
     private void refresh() {
         String[][] tpData = FileManager.getAnalytics();
-        updateTable(taxpayerTable, tpData,
-                new String[]{"ID", "Region", "Filer", "Asset Value (PKR)", "Tax Due (PKR)"});
+        updateTable(taxpayerTable, tpData, new String[]{"ID", "Region", "Filer", "Asset Value (PKR)", "Tax Due (PKR)"});
 
         String[][] anData = FileManager.getRegionalAnalytics();
-        updateTable(analyticsTable, anData,
-                new String[]{"Region", "Total Tax Collected (PKR)"});
+        updateTable(analyticsTable, anData, new String[]{"Region", "Total Tax Collected (PKR)"});
 
         // Update summary cards — just set text on the existing labels
         totalTPLabel.setText(FileManager.getTotalTaxPayers());

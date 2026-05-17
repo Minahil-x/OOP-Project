@@ -1,6 +1,6 @@
 package edu.project.model.tax.income;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 import edu.project.model.tax.Taxable;
 import edu.project.model.user.TaxPayer;
 
@@ -10,20 +10,15 @@ public class Asset extends Taxable {
     private double taxD;
 
     //todo
-    public Asset(double bankInvestment, double equityInvestment) throws ValidationError {
+    public Asset(double bankInvestment, double equityInvestment, TaxPayer payer) throws ValidationException {
         if (bankInvestment < 0 || equityInvestment < 0) {
-            throw new ValidationError("Values can not be negative.");
+            throw new ValidationException("Values can not be negative.");
         }
         super();
         this.bankInvestment = bankInvestment;
         this.equityInvestment = equityInvestment;
+        calculateTax(payer);
     }
-
-    public double getBankInvestment() {return bankInvestment;}
-    public double getEquityInvestment() {return equityInvestment;}
-
-    public void setEquityInvestment(double annualDividend) {this.equityInvestment = annualDividend;}
-    public void setBankInvestment(double bankInvestment) {this.bankInvestment = bankInvestment;}
 
     @Override
     public double calculateValuation() {

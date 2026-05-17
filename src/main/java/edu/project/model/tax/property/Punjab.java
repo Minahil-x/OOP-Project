@@ -1,17 +1,17 @@
 package edu.project.model.tax.property;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 
 public class Punjab extends Property{
     private double irrigatedPercent;
     private double coveredUrbanAreaPercent;
 
-    public   Punjab(double urbanArea, double agriArea, double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationError {
+    public   Punjab(double urbanArea, double agriArea, double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationException {
         if (urbanArea < 0 || agriArea < 0) {
-            throw new ValidationError("Values can not be negative.");
+            throw new ValidationException("Values can not be negative.");
         }
         if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
-            throw new ValidationError("Percentage must be between 0 and 1.");
+            throw new ValidationException("Percentage must be between 0 and 1.");
         }
         super(urbanArea, agriArea);
 
@@ -19,12 +19,6 @@ public class Punjab extends Property{
         this.coveredUrbanAreaPercent = coveredUrbanAreaPercent;
         save();
     }
-
-    public double getCoveredUrbanAreaPercent() {return coveredUrbanAreaPercent;}
-    public double getIrrigatedPercent() {return this.irrigatedPercent;}
-
-    public void setIrrigatedPercent(double irrigatedPercent) {this.irrigatedPercent = irrigatedPercent;}
-    public void setCoveredUrbanAreaPercent(double coveredUrbanAreaPercent){this.coveredUrbanAreaPercent = coveredUrbanAreaPercent;}
 
     @Override
     public double calculateUrbanTax(){

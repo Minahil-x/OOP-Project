@@ -25,21 +25,6 @@ public class TaxPayer extends User {
     public boolean getFilerStatus() { return filerStatus; }
     public String getRegion() { return region; }
 
-    public void setFilerStatus(boolean filerStatus) { this.filerStatus = filerStatus; }
-    public void setRegion(String region) { this.region = region; }
-
-    // Updates internal map from a Collection input
-    public void setTaxables(Collection<Taxable> taxablesList) {
-        this.taxables.clear();
-        for (Taxable t : taxablesList) {
-            addTaxable(t);
-        }
-    }
-
-    /**
-     * Adds a taxable asset.
-     * If an asset of the exact same concrete class already exists, it is completely overwritten.
-     */
     public void addTaxable(Taxable taxable) {
         if (taxable != null) {
             this.taxables.put(taxable.getClass(), taxable);

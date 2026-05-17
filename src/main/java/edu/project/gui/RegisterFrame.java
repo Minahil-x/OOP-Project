@@ -1,6 +1,6 @@
 package edu.project.gui;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 import edu.project.manager.UserManager;
 import edu.project.model.user.Admin;
 import edu.project.model.user.TaxPayer;
@@ -125,7 +125,7 @@ public class RegisterFrame extends JFrame {
                 idField.setText("");
                 passField.setText("");
                 return;
-            } catch (ValidationError ex) {
+            } catch (ValidationException ex) {
                 statusLabel.setForeground(AppTheme.DANGER);
                 statusLabel.setText(ex.getMessage());
             }
@@ -140,7 +140,7 @@ public class RegisterFrame extends JFrame {
             statusLabel.setText("Account created! You can now log in.");
             idField.setText("");
             passField.setText("");
-        } catch (ValidationError ex) {
+        } catch (ValidationException ex) {
             statusLabel.setForeground(AppTheme.DANGER);
             statusLabel.setText(ex.getMessage());
         }

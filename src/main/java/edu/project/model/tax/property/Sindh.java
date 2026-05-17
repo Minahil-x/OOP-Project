@@ -1,17 +1,17 @@
 package edu.project.model.tax.property;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 
 public class Sindh extends Property{
     private double irrigatedPercent;
     private double coveredUrbanAreaPercent;
 
-    public   Sindh(double urbanArea, double agriArea,double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationError {
+    public   Sindh(double urbanArea, double agriArea,double irrigatedPercent, double coveredUrbanAreaPercent) throws ValidationException {
         if (urbanArea < 0 || agriArea < 0) {
-            throw new ValidationError("Values can not be negative.");
+            throw new ValidationException("Values can not be negative.");
         }
         if (irrigatedPercent < 0 || irrigatedPercent > 1 || coveredUrbanAreaPercent < 0  || coveredUrbanAreaPercent > 1) {
-            throw new ValidationError("Percentage must be between 0 and 1.");
+            throw new ValidationException("Percentage must be between 0 and 1.");
         }
         super(urbanArea, agriArea);
         this.irrigatedPercent = irrigatedPercent;

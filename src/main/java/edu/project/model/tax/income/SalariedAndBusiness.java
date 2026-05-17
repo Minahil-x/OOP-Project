@@ -1,26 +1,20 @@
 package edu.project.model.tax.income;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 import edu.project.model.tax.Taxable;
 
 public class SalariedAndBusiness extends Taxable {
     private double annualSalary;
     private double annualBusinessIncome;
 
-    public SalariedAndBusiness(double annualSalary, double annualBusinessIncome) throws ValidationError {
+    public SalariedAndBusiness(double annualSalary, double annualBusinessIncome) throws ValidationException {
         if (annualSalary < 0 || annualBusinessIncome < 0) {
-            throw new ValidationError("Values can not be negative.");
+            throw new ValidationException("Values can not be negative.");
         }
         super();
         this.annualBusinessIncome = annualBusinessIncome;
         this.annualSalary = annualSalary;
     }
-
-    public void setAnnualSalary(double annualSalary){this.annualSalary = annualSalary;}
-    public void setAnnualBusinessIncome(double annualBusinessIncome){this.annualBusinessIncome = annualBusinessIncome;}
-
-    public double getAnnualSalary(){return annualSalary;}
-    public double getAnnualBusinessIncome(){return annualBusinessIncome;}
 
     @Override
     public double calculateValuation() {

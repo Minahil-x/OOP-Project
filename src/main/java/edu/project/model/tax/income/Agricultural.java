@@ -1,5 +1,6 @@
 package edu.project.model.tax.income;
 
+import edu.project.exceptions.ValidationException;
 import edu.project.model.tax.Taxable;
 
 import java.util.HashMap;
@@ -20,16 +21,11 @@ public class Agricultural extends Taxable {
         regionalIncome.put("gb", 0.0);
     }
 
-    public Map<String, Double> getRegionalIncome(){
-        return regionalIncome;
-    }
-
-    public void addRegionalIncome(String region, Double regionalIncomeValue){
+    public void addRegionalIncome(String region, Double regionalIncomeValue) throws ValidationException {
+        if(regionalIncomeValue < 0){
+            throw new ValidationException("Regional income value cannot be negative.");
+        }
         this.regionalIncome.put(region.toLowerCase(), regionalIncomeValue);
-    }
-
-    public double getIncomeByRegion(String region){
-        return regionalIncome.getOrDefault(region.toLowerCase(), 0.0);
     }
 
     @Override

@@ -15,9 +15,6 @@ public class User implements Serializable {
 
     public String getPassword() {return password;}
     public String getId() {return id;}
-    public boolean isLoginStatus() {return loginStatus;}
 
     public void setLoginStatus(boolean loginStatus) {this.loginStatus = loginStatus;}
-    public void setPassword(String password) {this.password = password;}
-    public void setId(String id) {this.id = id;}
 }

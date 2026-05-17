@@ -1,6 +1,6 @@
 package edu.project.manager;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 import edu.project.model.user.User;
 
 import java.io.Serializable;
@@ -13,23 +13,23 @@ public class UserManager implements Serializable {
         users = new ArrayList<>();
     }
 
-    public void register(User user) throws ValidationError {
+    public void register(User user) throws ValidationException {
         for(User u : users){
             if(u.getId().equals(user.getId())){
-                throw new ValidationError("User " + user.getId() + " already exists.");
+                throw new ValidationException("User " + user.getId() + " already exists.");
             }
         }
         users.add(user);
     }
 
-    public User login(String id, String password) throws ValidationError {
+    public User login(String id, String password) throws ValidationException {
         for(User u : users){
             if(u.getId().trim().equals(id.trim()) && u.getPassword().trim().equals(password.trim())){
                 u.setLoginStatus(true);
                 return u;
             }
         }
-        throw new ValidationError("User " + id + " doesn't exist or password is incorrect.");
+        throw new ValidationException("User " + id + " doesn't exist or password is incorrect.");
     }
 
     public void logout(User user){

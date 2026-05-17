@@ -10,14 +10,15 @@ abstract public class Taxable implements Serializable {
         tax = new ArrayList<>();
     }
 
+    public ArrayList<String> getTaxes(){return tax;}
+
+    public void setTaxes(ArrayList<String> tax){this.tax = tax;}
+
     abstract public double calculateValuation();
     abstract public double calculateTax();
     abstract public void save();
     abstract public String display();
     abstract public String toString();
 
-    public ArrayList<String> getTaxes(){return tax;}
-
-    public void setTaxes(ArrayList<String> tax){this.tax = tax;}
 
 }

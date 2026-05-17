@@ -209,7 +209,6 @@ public class UserDashboard extends JFrame {
                 };
 
                 taxPayer.addTaxable(prop);
-                saveTaxPayer();
                 refreshSummary();
                 clearFields(urbanF, agriF, irrigF, coveredF);
                 showSuccess("Property added successfully.");
@@ -237,7 +236,6 @@ public class UserDashboard extends JFrame {
                 SalariedAndBusiness inc = new SalariedAndBusiness(salary, business);
                 inc.save();
                 taxPayer.addTaxable(inc);
-                saveTaxPayer();
                 refreshSummary();
                 clearFields(salaryF, businessF);
                 showSuccess("Income added successfully.");
@@ -273,7 +271,6 @@ public class UserDashboard extends JFrame {
                 }
                 agri.save();
                 taxPayer.addTaxable(agri);
-                saveTaxPayer();
                 refreshSummary();
                 for (JTextField f : fields) f.setText("");
                 showSuccess("Agricultural income added.");
@@ -298,11 +295,10 @@ public class UserDashboard extends JFrame {
             try {
                 double bank   = parseField(bankF, "Bank Investment");
                 double equity = parseField(equityF, "Equity Investment");
-                Asset asset = new Asset(bank, equity);
+                Asset asset = new Asset(bank, equity, taxPayer);
                 asset.calculateTax(taxPayer);
                 asset.save();
                 taxPayer.addTaxable(asset);
-                saveTaxPayer();
                 refreshSummary();
                 clearFields(bankF, equityF);
                 showSuccess("Asset income added.");
@@ -322,10 +318,6 @@ public class UserDashboard extends JFrame {
         totalTaxLabel.setText(String.format("PKR %,.2f", taxPayer.totalTaxAmount()));
         totalValueLabel.setText(String.format("PKR %,.2f", taxPayer.totalValue()));
         summaryArea.setText(taxPayer.totalTax());
-    }
-
-    private void saveTaxPayer() {
-
     }
 
     private void doLogout() {

@@ -1,6 +1,6 @@
 package edu.project.gui;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 import edu.project.manager.UserManager;
 import edu.project.model.user.Admin;
 import edu.project.model.user.TaxPayer;
@@ -132,7 +132,7 @@ public class LoginFrame extends JFrame {
             } else if (user instanceof TaxPayer) {
                 new UserDashboard((TaxPayer) user, userManager).setVisible(true);
             }
-        } catch (ValidationError ex) {
+        } catch (ValidationException ex) {
             statusLabel.setText(ex.getMessage());
             passField.setText("");
         }

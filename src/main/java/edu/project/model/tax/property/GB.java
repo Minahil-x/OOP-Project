@@ -1,11 +1,11 @@
 package edu.project.model.tax.property;
 
-import edu.project.exceptions.ValidationError;
+import edu.project.exceptions.ValidationException;
 
 public class GB extends Property{
-    public   GB(double urbanArea, double agriArea) throws ValidationError {
+    public   GB(double urbanArea, double agriArea) throws ValidationException {
         if (urbanArea < 0 || agriArea < 0) {
-            throw new ValidationError("Values can not be negative.");
+            throw new ValidationException("Values can not be negative.");
         }
         super(urbanArea, agriArea);
         save();

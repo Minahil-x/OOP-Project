@@ -10,7 +10,6 @@ public class AppTheme {
     public static final Color BG_CARD      = new Color(22, 27, 34);
     public static final Color BG_INPUT     = new Color(33, 38, 45);
     public static final Color ACCENT       = new Color(0, 196, 154);   // teal-green
-    public static final Color ACCENT_HOVER = new Color(0, 230, 180);
     public static final Color DANGER       = new Color(220, 80, 80);
     public static final Color TEXT_PRIMARY = new Color(230, 237, 243);
     public static final Color TEXT_MUTED   = new Color(110, 118, 129);
